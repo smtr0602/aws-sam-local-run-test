@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  lambda local demo
+
+Resources:
+  DemoFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/ # {projectPath}/
+      Handler: index.handler # {filename.functionName}
+      Runtime: nodejs14.x
+
+  DemoFunctionWithAPIGateway:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/ # {projectPath}/
+      Handler: index.handler # {filename.functionName}
+      Runtime: nodejs14.x
+      Events:
+        MyTestEvent:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /hello
+            Method: get
