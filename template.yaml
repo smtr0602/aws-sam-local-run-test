@@ -10,6 +10,8 @@ Resources:
       CodeUri: src/ # {projectPath}/
       Handler: index.handler # {filename.functionName}
       Runtime: nodejs14.x
+      Layers:
+        - <ARN-of-lambda-layer-here>
 
   DemoFunctionWithAPIGateway:
     Type: AWS::Serverless::Function

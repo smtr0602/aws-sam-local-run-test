@@ -21,6 +21,11 @@ exports.handler = async (event, context) => {
 // $ sam local invoke -e ./src/event.json DemoFunction
 // ----------------------------------------------------
 
+// Test lambda (event.json used) with Lambda layer
+// ----------------------------------------------------
+// $ sam local invoke --layer-cache-basedir <path-to-layer-directory> DemoFunction
+// ----------------------------------------------------
+
 // Test lambda with API (event.json not used)
 // ----------------------------------------------------
 // $ sam local start-api
