@@ -10,6 +10,7 @@ Resources:
       CodeUri: src/ # {projectPath}/
       Handler: index.handler # {filename.functionName}
       Runtime: nodejs14.x
+      Timeout: 10 # lambda fails after
       Layers: # add this if working with lambda layer
         - <ARN-of-lambda-layer-here>
 
