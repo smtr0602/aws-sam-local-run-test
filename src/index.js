@@ -18,7 +18,7 @@ exports.handler = async (event, context) => {
 
 // Run lambda (event.json used)
 // ----------------------------------------------------
-// $ sam local invoke -e ./src/event.json DemoFunction
+// $ sam local invoke -e ./src/event.json MyFunction
 // ----------------------------------------------------
 
 // Run lambda with API (event.json not used)
