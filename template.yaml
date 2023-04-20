@@ -26,6 +26,10 @@ Resources:
           Properties:
             Path: /hello
             Method: get
+            Cors:
+              AllowMethods: "'*'"
+              AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              AllowOrigin: "'*'"
             Auth:
               Authorizer: arn:aws:cognito-idp:<region>:<account>:userpool/<userPoolId>
               AddDefaultAuthorizerToCorsPreflight: true
