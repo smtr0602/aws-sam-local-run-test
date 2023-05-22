@@ -16,20 +16,23 @@ Resources:
 
   MyFunctionWithAPIGateway:
     Type: AWS::Serverless::Function
+    Cors:
+      AllowMethods: "'*'"
+      AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+      AllowOrigin: "'*'"
     Properties:
       CodeUri: src/ # {projectPath}/
       Handler: index.handler # {filename.functionName}
       Runtime: nodejs14.x
+      Timeout: 10 # lambda fails after
+      Layers: # add this if working with lambda layer
+        - <ARN-of-lambda-layer-here>
       Events:
         MyTestEvent:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /hello
             Method: get
-            Cors:
-              AllowMethods: "'*'"
-              AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
-              AllowOrigin: "'*'"
             Auth:
               Authorizer: arn:aws:cognito-idp:<region>:<account>:userpool/<userPoolId>
               AddDefaultAuthorizerToCorsPreflight: true
