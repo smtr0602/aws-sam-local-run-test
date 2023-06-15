@@ -13,6 +13,7 @@ Resources:
       Timeout: 10 # lambda fails after
       Layers: # add this if working with lambda layer
         - <ARN-of-lambda-layer-here>
+        - !REF MyLayer # use local layer
 
   MyFunctionWithAPIGateway:
     Type: AWS::Serverless::Function
@@ -27,6 +28,7 @@ Resources:
       Timeout: 10 # lambda fails after
       Layers: # add this if working with lambda layer
         - <ARN-of-lambda-layer-here>
+        - !REF MyLayer # use local layer
       Events:
         MyTestEvent:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -36,3 +38,13 @@ Resources:
             Auth:
               Authorizer: arn:aws:cognito-idp:<region>:<account>:userpool/<userPoolId>
               AddDefaultAuthorizerToCorsPreflight: true
+
+  MyLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: <layer-name>
+      ContentUri: <layer-directory>/lib/nodejs # where package.json is located
+      CompatibleRuntimes:
+        - nodejs14.x
+    Metadata:
+      BuildMethod: nodejs14.x
